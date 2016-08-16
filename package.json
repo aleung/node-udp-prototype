@@ -1,0 +1,15 @@
+{
+  "name": "node_udp_prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leo Liang",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^6.0.34",
+    "typescript": "^2.0.0"
+  }
+}
