@@ -9,7 +9,9 @@
   "author": "Leo Liang",
   "license": "MIT",
   "devDependencies": {
+    "@types/mocha": "^2.2.29",
     "@types/node": "^6.0.34",
+    "mocha": "^3.0.2",
     "typescript": "^2.0.0"
   }
 }
