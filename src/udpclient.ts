@@ -2,11 +2,12 @@
 
 import * as dgram from 'dgram';
 
-Promise.prototype.finally = function (callback) {
+// from @ses/common
+Promise.prototype['finally'] = function <T>(callback: Function): Promise<T> {
   let P = this.constructor;
   return this.then(
-    value  => P.resolve(callback()).then(() => value),
-    reason => P.resolve(callback()).then(() => { throw reason })
+    (value: any) => P.resolve(callback()).then(() => value),
+    (error: any) => P.resolve(callback()).then(() => { throw error; })
   );
 };
 
@@ -64,11 +65,8 @@ export class UdpClient {
 
     const timeout = (receiveConfig && receiveConfig.timeout) ? receiveConfig.timeout : 1000;
     const tries = (receiveConfig && receiveConfig.tries) ? receiveConfig.tries: 1;
-    return 
-      tryMultipleTimes(() => this.receiveWait(tid, timeout), tries)
-      .finally(() => {
-        this.receivers.delete(tid);
-      });
+    return tryMultipleTimes( () => this.receiveWait(tid, timeout), tries)
+      .finally( () => this.receivers.delete(tid) );
   }
 
 
